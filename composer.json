@@ -1,0 +1,24 @@
+{
+    "name": "amitjoc/breakify",
+    "description": "Handle new line or line break across differenct platform (windows, unix, mac) and envirnoment like web, cli",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Amit Joshi",
+            "email": "amitjoc@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Amitjoc\\Breakify\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^4.0"
+    }
+}
