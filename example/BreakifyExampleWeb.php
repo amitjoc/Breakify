@@ -24,6 +24,3 @@ echo "Horizontal Dashed Line: <code>phr_dashed()</code>";       $lineBreak->phr_
 echo "Horizontal Dotted Line: <code>phr_dotted()</code>";       $lineBreak->phr_dotted();
 echo "Horizontal ridge Line: <code>phr_ridge()</code>";         $lineBreak->phr_ridge();
 echo "Horizontal double Line: <code>phr_double()</code>";       $lineBreak->phr_double();
-
-$lineBreak->pLineBreak();
-echo "<h1>For CLI</h1>";
