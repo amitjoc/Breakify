@@ -57,5 +57,28 @@ class Breakify
         echo ($hr) ? $this->hr : $this->br ;
     }
 
+    public function phr()
+    {
+        $this->pbr(true);
+    }
+    public function phr_dashed()
+    {
+        echo "<hr style='border-style: dashed' />";
+    }
+    public function phr_dotted()
+    {
+        echo "<hr style='border-style: dotted' />";
+    }
+
+    public function phr_double()
+    {
+        echo "<hr style='border-style: double' />";
+    }
+
+    public function phr_ridge()
+    {
+        echo "<hr style='border-style: ridge' />";
+    }
+
 
 }
