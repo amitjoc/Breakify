@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Amitjoc\\Breakify\\": "src/"
+            "AJ\\LineBreak\\": "src/"
         }
     },
     "minimum-stability": "dev",
