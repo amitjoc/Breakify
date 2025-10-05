@@ -24,8 +24,12 @@ class Breakify
     }
 
     /**
-     * function checks a request type
-     * @return string cli | web
+     * Determines the current execution environment.
+     *
+     * Checks if the script is running in a web (HTTP) or CLI context,
+     * and returns a string representing the environment type.
+     *
+     * @return string 'web' if running via HTTP, 'cli' if running in command-line interface.
      */
     public function checkRequest(): string
     {
@@ -33,9 +37,9 @@ class Breakify
     }
 
     /**
-     * Will check request come from cli or web
+     * Determines if the current script is running in the CLI (Command Line Interface) environment.
      *
-     * @return bool returns true if request came form cli
+     * @return bool True if running via CLI, false otherwise.
      */
     private function isCli(): bool
     {
@@ -79,6 +83,5 @@ class Breakify
     {
         echo "<hr style='border-style: ridge' />";
     }
-
 
 }
