@@ -56,7 +56,7 @@ class Breakify
 
     public function __construct()
     {
-        $this->lineBreak = ($this->isCli() == 'cli') ? $this->nl : $this->br;
+        $this->lineBreak = $this->isCli() ? $this->nl : $this->br;
     }
 
     /**
