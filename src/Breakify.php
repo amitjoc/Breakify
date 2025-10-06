@@ -4,18 +4,50 @@ namespace AJ\LineBreak;
 
 class Breakify
 {
+    /**
+     * HTML break tag for web output.
+     *
+     *Used for rendering a <br /> element in output.
+     *
+     * @var string
+     */
     private $br = "<br />";
 
+    /**
+     * Horizontal rule HTML string for web output
+     *
+     * Used for rendering a <hr /> element in output.
+     *
+     * @var string
+     */
     private $hr = "<hr />";
 
+    /**
+     * cli new line \n
+     * @var string
+     */
     private $nl = "\n";
 
+    /**
+     * cli double new line \n\n
+     * @var string
+     */
     private $dnl = "\n\n";
 
+    /**
+     * true if environment is cli default is false
+     * @var bool
+     */
     private $isCli = false;
 
     private $interface  = ['web','cli'];
 
+    /**
+     * this variable is used when we don't know, where a script will be executed in web or cli
+     * default is set to \n but will get value updated as script execution environment changes
+     * value will be updated in constructor
+     * @var string
+     */
     private $lineBreak = "\n"; // default line break is \n
 
     public function __construct()
@@ -43,7 +75,7 @@ class Breakify
      */
     private function isCli(): bool
     {
-        return (php_sapi_name() == 'cli') ;
+        return (php_sapi_name() === 'cli') ;
     }
 
     public function pLineBreak()
@@ -51,12 +83,21 @@ class Breakify
         echo $this->lineBreak;
     }
 
-    public function pnl($doubleNewLine = false)
+    /**
+     * Prints a newline character to the CLI output.
+     *
+     * If $useDoubleNewLine is true, prints two newline characters ("\n\n").
+     * Otherwise, prints a single newline character ("\n").
+     *
+     * @param bool $useDoubleNewLine Whether to print double newline.
+     * @return void
+     */
+    public function pnl(bool $useDoubleNewLine = false)
     {
-        echo ($doubleNewLine) ? $this->dnl: $this->nl;
+        echo ($useDoubleNewLine) ? $this->dnl: $this->nl;
     }
 
-    public function pbr($hr = false)
+    public function pbr(bool $hr = false)
     {
         echo ($hr) ? $this->hr : $this->br ;
     }
@@ -84,4 +125,8 @@ class Breakify
         echo "<hr style='border-style: ridge' />";
     }
 
+    public function getOS(): string
+    {
+        return PHP_OS;
+    }
 }
