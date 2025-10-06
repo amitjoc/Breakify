@@ -48,11 +48,15 @@ class Breakify
      * value will be updated in constructor
      * @var string
      */
-    private $lineBreak = "\n"; // default line break is \n
+    private $lineBreak = "\n";
+
+    private $cr = "\r";
+
+    private $tab = "\t";
 
     public function __construct()
     {
-        $this->lineBreak = ($this->isCli()=='cli') ? $this->nl : $this->br ;
+        $this->lineBreak = ($this->isCli() == 'cli') ? $this->nl : $this->br;
     }
 
     /**
@@ -78,6 +82,9 @@ class Breakify
         return (php_sapi_name() === 'cli') ;
     }
 
+    /**
+     * @return void
+     */
     public function pLineBreak()
     {
         echo $this->lineBreak;
@@ -94,7 +101,7 @@ class Breakify
      */
     public function pnl(bool $useDoubleNewLine = false)
     {
-        echo ($useDoubleNewLine) ? $this->dnl: $this->nl;
+        echo ($useDoubleNewLine) ? $this->dnl : $this->nl;
     }
 
     public function pbr(bool $hr = false)
@@ -106,25 +113,45 @@ class Breakify
     {
         $this->pbr(true);
     }
-    public function phr_dashed()
+    public function phrDashed()
     {
         echo "<hr style='border-style: dashed' />";
     }
-    public function phr_dotted()
+    public function phrDotted()
     {
         echo "<hr style='border-style: dotted' />";
     }
 
-    public function phr_double()
+    public function phrDouble()
     {
         echo "<hr style='border-style: double' />";
     }
 
-    public function phr_ridge()
+    public function phrRidge()
     {
         echo "<hr style='border-style: ridge' />";
     }
 
+    public function pNewLine(bool $useDoubleNewLine = false)
+    {
+        echo $useDoubleNewLine ? $this->dnl : $this->nl;
+    }
+
+    public function pCarriageReturn()
+    {
+        echo "\r";
+    }
+
+    /**
+     * Generate a beep sound on cli environment
+     *
+     * This works only for cli and its like \a
+     * @return void
+     */
+    public function cliBeep()
+    {
+        echo chr(7);
+    }
     public function getOS(): string
     {
         return PHP_OS;
