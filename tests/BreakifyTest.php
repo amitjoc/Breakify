@@ -1,4 +1,5 @@
 <?php
+
 namespace AJ\LineBreak\Tests;
 
 use AJ\LineBreak\Breakify;
