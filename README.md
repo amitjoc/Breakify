@@ -24,39 +24,39 @@ LinkedIn: [@amitjoc](https://www.linkedin.com/in/amitjoc/)
 - [Environment](#environment)
 - [Feature List](#feature-list)
 - [Examples](#example-for-web)
-- [CLI Usage](#only-for-cli)
+- [CLI Usage](#example-for-cli)
 - [Task List](#task-list)
 - [Coding Standards](#coding-standard)
 
 # Installation
 
-> 1. Download the Breakify library
+> Download the Breakify library
 ```php
  composer require amitjoshi/breakify
 ```
-> 2. Include composer `autoload` file  
+> Include composer `autoload` file  
 ```php 
  include_once dirname(__DIR__) . "/vendor/autoload.php"; 
  ```
-> 3. Create Breakify object 
+> Create a Breakify object 
 ```php
   $web = new Breakify();
 ```
 
 # Environment
-- `WEB`: Use when script runs only in browser-based environments.
-- `CLI`: Use when script runs only in command-line environments.
+- `WEB`: Use when a script runs only in browser-based environments.
+- `CLI`: Use when a script runs only in command-line environments.
 - `BOTH`: Use when the environment is dynamic or unknown.
 
 
-# Feature List  
+# Feature List
 
-- [Web Example](#example-for-web-) and [CLI Example](#example-for-cli) 
+- [Web Example](#example-for-web) and [CLI Example](#example-for-cli) 
 - `beap()` (bell sound for CLI)
 - Normalize or convert line breaks across different platforms `(Windows \r\n, Unix \n, Mac \r)`
 - Handle other `escape character` too for cli (`in progress`)
 
-## Example for WEB 
+## Example for WEB
 
 When we already know that our `script` only executed on `WEB` environment
 
@@ -82,13 +82,13 @@ $cliBreak->pNewLine()       //  echoes single line break
 $cliBreak->pNewLine(true)   //  echoes double line break
 ```
 - print carriage return also `\r`
-- print text withing the box with desired character like -, = (in progress)
+- print text withing the box with desired character like —, = (in progress)
 - Make a bell sound `beap()` from php (available only in cli mode)
 
 > [!IMPORTANT]  
 > 1. `functions` with `p` prefix directly give output like `pbr()`,`phr()`,`pLineBreak()`  
 
-# Task List 
+# Task List
  
 ## Default
 
@@ -109,6 +109,6 @@ $cliBreak->pNewLine(true)   //  echoes double line break
 - [x] print `double line` use function `phrDouble()`
 - [ ] custom hr line width and height and center also with in build stylesheet
 
-## Coding Standard 
+## Coding Standard
 
 - [x] PSR 4 or PSR12
