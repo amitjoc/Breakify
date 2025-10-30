@@ -5,58 +5,52 @@ namespace AJ\LineBreak;
 class Breakify
 {
     /**
-     * HTML break tag for web output.
-     *
-     *Used for rendering a <br /> element in output.
-     *
-     * @var string
-     */
-    private $br = "<br />";
-
-    /**
-     * Horizontal rule HTML string for web output
-     *
-     * Used for rendering a <hr /> element in output.
-     *
-     * @var string
-     */
-    private $hr = "<hr />";
-
-    /**
-     * cli new line \n
-     * @var string
-     */
-    private $nl = "\n";
-
-    /**
-     * cli double new line \n\n
-     * @var string
-     */
-    private $dnl = "\n\n";
-
-    /**
-     * true if environment is cli default is false
-     * @var bool
-     */
-    private $isCli = false;
-
-    private $interface  = ['web','cli'];
-
-    /**
      * this variable is used when we don't know, where a script will be executed in web or cli
-     * default is set to \n but will get value updated as script execution environment changes
+     * default is set to PHP_EOL but will get value updated as script execution environment changes
      * value will be updated in constructor
      * @var string
      */
-    private $lineBreak = "\n";
+    private string $lineBreak;
 
-    private $cr = "\r";
+    /**
+     * cli new line
+     * @var string
+     */
+    private string $nl;
 
-    private $tab = "\t";
+    /**
+     * HTML break tag for web output.
+     * Used for rendering a <br /> element in output.
+     *
+     * @var string
+     */
+    private string $br = "<br />";
+
+    /**
+     * Horizontal rule HTML string for web output
+     * Used for rendering a <hr /> element in output.
+     * @var string
+     */
+    private string $hr = "<hr />";
+
+    /**
+     * cli double new line
+     * @var string
+     */
+    private string $dnl;
+
+    private string $cr = "\r";
+
+    private string $tab = "\t";
 
     public function __construct()
     {
-        $this->lineBreak = $this->isCli() ? $this->nl : $this->br;
+        $this->lineBreak = $this->nl = PHP_EOL;
+        $this->dnl = PHP_EOL . PHP_EOL;
+
+        if (!$this->isCliEnv()) {
+            $this->lineBreak = $this->br;
+        }
     }
 
     /**
@@ -67,9 +61,9 @@ class Breakify
      *
      * @return string 'web' if running via HTTP, 'cli' if running in command-line interface.
      */
-    public function checkRequest(): string
+    public function exeEnvType(): string
     {
-        return $this->isCli() ? "cli" : "web" ;
+        return $this->isCliEnv() ? "cli" : "web" ;
     }
 
     /**
@@ -77,64 +71,50 @@ class Breakify
      *
      * @return bool True if running via CLI, false otherwise.
      */
-    private function isCli(): bool
+    public function isCliEnv(): bool
     {
-        return (php_sapi_name() === 'cli') ;
+        return (php_sapi_name() === 'cli');
     }
 
     /**
-     * @return void
+     * @return string
      */
-    public function pLineBreak()
+    public function getLineBreak(): string
     {
-        echo $this->lineBreak;
-    }
-
-    /**
-     * Prints a newline character to the CLI output.
-     *
-     * If $useDoubleNewLine is true, prints two newline characters ("\n\n").
-     * Otherwise, prints a single newline character ("\n").
-     *
-     * @param bool $useDoubleNewLine Whether to print double newline.
-     * @return void
-     */
-    public function pnl(bool $useDoubleNewLine = false)
-    {
-        echo ($useDoubleNewLine) ? $this->dnl : $this->nl;
-    }
-
-    public function pbr(bool $hr = false)
-    {
-        echo ($hr) ? $this->hr : $this->br ;
-    }
-
-    public function phr()
-    {
-        $this->pbr(true);
-    }
-    public function phrDashed()
-    {
-        echo "<hr style='border-style: dashed' />";
-    }
-    public function phrDotted()
-    {
-        echo "<hr style='border-style: dotted' />";
-    }
-
-    public function phrDouble()
-    {
-        echo "<hr style='border-style: double' />";
-    }
-
-    public function phrRidge()
-    {
-        echo "<hr style='border-style: ridge' />";
+        return $this->lineBreak;
     }
 
     public function pNewLine(bool $useDoubleNewLine = false)
     {
         echo $useDoubleNewLine ? $this->dnl : $this->nl;
+    }
+
+    public function pbr()
+    {
+        echo $this->br ;
+    }
+
+    public function phr()
+    {
+        echo $this->hr;
+    }
+    public function phrDashed()
+    {
+        echo "<hr style='border-style: dashed' />";
+    }
+    public function phrDotted(): void
+    {
+        echo "<hr style='border-style: dotted' />";
+    }
+
+    public function phrDouble(): void
+    {
+        echo "<hr style='border-style: double' />";
+    }
+
+    public function phrRidge(): void
+    {
+        echo "<hr style='border-style: ridge' />";
     }
 
     public function pCarriageReturn()
@@ -151,9 +131,5 @@ class Breakify
     public function cliBeep()
     {
         echo chr(7);
-    }
-    public function getOS(): string
-    {
-        return PHP_OS;
     }
 }
