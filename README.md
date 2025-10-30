@@ -3,105 +3,112 @@ Breakify is a lightweight PHP utility for managing and transforming line breaks 
 Whether you're normalizing text input, preparing content for HTML output, or ensuring consistent formatting in 
 logs or CLI tools, Breakify offers a clean, expressive API to handle it all.
 
+# Author
+
+**Amit Joshi**  
+Backend Developer | PHP & JavaScript Specialist  
+GitHub: [@amitjoc](https://github.com/amitjoc)  
+LinkedIn: [@amitjoc](https://www.linkedin.com/in/amitjoc/)
+
+![PHP Version](https://img.shields.io/badge/PHP-7.4%2B-blue)
+![License](https://img.shields.io/github/license/amitjoc/breakify)
+![Build Status](https://img.shields.io/github/actions/workflow/status/amitjoc/breakify/php.yml)
+![Code Style](https://img.shields.io/badge/code%20style-PSR12-green)
+![Issues](https://img.shields.io/github/issues/amitjoc/breakify)
+![Stars](https://img.shields.io/github/stars/amitjoc/breakify?style=social)
+
+
+# Table of Contents
+- [Author](#author)
+- [Installation](#installation)
+- [Environment](#environment)
+- [Feature List](#feature-list)
+- [Examples](#example-for-web)
+- [CLI Usage](#only-for-cli)
+- [Task List](#task-list)
+- [Coding Standards](#coding-standard)
+
+# Installation
+
+> 1. Download the Breakify library
+```php
+ composer require amitjoshi/breakify
+```
+> 2. Include composer `autoload` file  
+```php 
+ include_once dirname(__DIR__) . "/vendor/autoload.php"; 
+ ```
+> 3. Create Breakify object 
+```php
+  $web = new Breakify();
+```
+
 # Environment
-- `web` : when we are sure that script will be executed only on web requests
-- `cli` : when we are sure that script will be executed only on cli requests
-- `Both`: when we are not sure a script's environment, it can be executed on both as per need
+- `WEB`: Use when script runs only in browser-based environments.
+- `CLI`: Use when script runs only in command-line environments.
+- `BOTH`: Use when the environment is dynamic or unknown.
 
 
-# Feature List
+# Feature List  
 
-- Normalize or convert line breaks across different platforms `(Windows \r\n, Unix \n, Mac \r)`,  
-  or format text for HTML, CLI, or logs.
+- [Web Example](#example-for-web-) and [CLI Example](#example-for-cli) 
+- `beap()` (bell sound for CLI)
+- Normalize or convert line breaks across different platforms `(Windows \r\n, Unix \n, Mac \r)`
 - Handle other `escape character` too for cli (`in progress`)
 
+## Example for WEB 
 
-## Example for Web 
+When we already know that our `script` only executed on `WEB` environment
 
-When we already know that our `script` only executed on `web` environment
-
-- print `br` 
-  ```php
+- print `br tag`
+```php
   $web = new Breakify()
-  $web->pbr();
-  ```
-- print `hr` 
-- print `dashed, dotted, ridge, double` `hr` line
-- print output for `pre` 
+  $web->pbr();        // OUTPUT: Print's `break tag` directly
+  $web->phr();        // OUTPUT: <hr />
+  $web->phrDashed();  // OUTPUT: ------- 
+  $web->phrDotted();  // OUTPUT: .......
+  $web->phrRidge();   // OUTPUT: _______
+  $web->phrDouble();  // OUTPUT: =======
+```
 
-
-## Only for Cli
-
+## Example for CLI
 When we already know that our `script` only executed on `cli` environment
 
-- print new line `PHP_EOL`
-- print double new line `PHP_EOL`.`PHP_EOL`
+```php
+$cliBreak = new Breakify();
+
+$cliBreak->getLineBreak()   //  returns `PHP_EOL`
+$cliBreak->pNewLine()       //  echoes single line break
+$cliBreak->pNewLine(true)   //  echoes double line break
+```
 - print carriage return also `\r`
-- print text withing the box with desired character like -, = 
+- print text withing the box with desired character like -, = (in progress)
 - Make a bell sound `beap()` from php (available only in cli mode)
 
-# Functions
-
-## Web
-
-## Cli
-  
-> [!IMPORTANT]
-> Below command will give you column width of open cli windows 
-> working with both PowerShell and command prompt 
-> Command Prompt: mode con /status | findstr "Columns"
-> PowerShell Command: ($host.UI.RawUI.WindowSize).Width
-> 
-
-## Both 
-
+> [!IMPORTANT]  
+> 1. `functions` with `p` prefix directly give output like `pbr()`,`phr()`,`pLineBreak()`  
 
 # Task List 
+ 
+## Default
 
-## OS Related 
+- [x] `CLI`: Default `LineBreak` is set to `PHP_EOL` 
+- [x] `WEB`: Default `LineBreak` is `<br />`
 
-- [ ] get/identify `os` version 
-- [ ] get/identify `cmd` version
-- [ ] get/identify `power shell` version 
-- [ ] get/identify `shell` version 
-- [ ] have to do `Refactoring` using PSR-12
+## Functions
+- [x] `isCliEnv()` function will check is execution environment. return `true` for cli else `false`
+- [x] `exeEnvType()` Type `WEB | CLI`. it will return the output accordingly 
 
-## Important Task
+## Functions for `web`
 
-- [ ] Force environment during object creation 
-- [x] Function `checkRequest()` Type `web | cli`. Must `return` request type
-- [x] Function `isCli()` to check coming request `cli` or not. return `true` or `false` accordingly    
-
-## For `web`
-
-- [ ] print br 
-- [ ] print br multiple times
-- [ ] print hr
-- [ ] print dashed hr and others where we can change the style of `hr` 
-- [ ] custom hr line width and height and center also with in build stylesheet 
-
+- [x] print break tag  `pbr()`
+- [x] print horizontal tag  `phr()`
+- [x] print `dashed line` use function `phrDashed()`  
+- [x] print `dotted line` use function `phrDotted()`
+- [x] print `ridge line` use function `phrRidge()`
+- [x] print `double line` use function `phrDouble()`
+- [ ] custom hr line width and height and center also with in build stylesheet
 
 ## Coding Standard 
 
--- PSR 2 or PSR12 
-
-## Commands for Cli
-
-> Commands : `powershell -command "&{$H=get-host;$H.ui.rawui;}"`  
-> 
-> Output:  
-> ForegroundColor       : Gray  
-> BackgroundColor       : Black  
-> CursorPosition        : 0,2  
-> WindowPosition        : 0,0  
-> CursorSize            : 25  
-> BufferSize            : 106,30  
-> WindowSize            : 106,30  
-> MaxWindowSize         : 106,30  
-> MaxPhysicalWindowSize : 1350,699  
-> KeyAvailable          : True   
-> WindowTitle           : Command Prompt - powershell  -command "&{$H=get-host;$H.ui.rawui;}"  
-
-> To identify a script is executed on cmd on windows
-> below command will output cmd.exe file path 
-> Command: echo %COMSPEC%
+- [x] PSR 4 or PSR12
