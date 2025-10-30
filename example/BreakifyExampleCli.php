@@ -6,13 +6,14 @@ include_once dirname(__DIR__) . "/vendor/autoload.php";
 
 $cliBreak = new Breakify();
 
-$cliBreak->cliBeep();
+//$cliBreak->cliBeep();
 
+echo $cliBreak->getLineBreak();
 echo "This is cli first line.";
-$cliBreak->pnl();
+$cliBreak->pNewLine();
 echo "This is cli second line.";
 
-$cliBreak->pnl();
+$cliBreak->pNewLine();
 echo "Before this line only one new line is there after this line 2 new line break applied";
-$cliBreak->pnl(true);
+$cliBreak->pNewLine();
 echo "2 Line Break before this";
