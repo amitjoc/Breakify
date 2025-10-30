@@ -1,6 +1,6 @@
 {
     "name": "amitjoc/breakify",
-    "description": "Handle new line or line break across differenct platform (windows, unix, mac) and envirnoment like web, cli",
+    "description": "Handle new line or line break across different platform (windows, unix, mac) and envirnoment like web, cli",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -17,14 +17,15 @@
     },
     "minimum-stability": "stable",
     "require": {
-        "php": ">=7.4"
+        "php": ">=8.3"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^4.0",
         "phpunit/phpunit": "^9"
     },
     "scripts": {
-        "test": "phpunit --colors=always"
+        "test": "phpunit --colors=always",
+        "lint": "phpcs --standard=PSR12 src/"
     }
 
 }
