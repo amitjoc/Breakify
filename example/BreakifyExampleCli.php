@@ -9,11 +9,10 @@ $cliBreak = new Breakify();
 //$cliBreak->cliBeep();
 
 echo $cliBreak->getLineBreak();
-echo "This is cli first line.";
+echo "This is cli first line break.";
 $cliBreak->pNewLine();
 echo "This is cli second line.";
-
 $cliBreak->pNewLine();
 echo "Before this line only one new line is there after this line 2 new line break applied";
-$cliBreak->pNewLine();
+$cliBreak->pNewLine(true);
 echo "2 Line Break before this";
